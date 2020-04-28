@@ -97,5 +97,7 @@ def test_get_all_user(client, db, user_factory, admin_headers):
     assert rep.status_code == 200
 
     results = rep.get_json()
+
+    users = db.session.query(User).all()
     for user in users:
         assert any(u["id"] == user.id for u in results["results"])

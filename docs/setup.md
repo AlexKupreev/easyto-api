@@ -22,10 +22,6 @@
   ```
   poetry add celery[redis] gunicorn
   ```
-* for testing add `requests`:
-  ```
-  poetry add --D requests
-  ```
 * use basic file structure from https://github.com/karec/cookiecutter-flask-restful
 * setup manage script in `pyproject.toml`:
   ```toml
@@ -64,8 +60,10 @@
     6. do not need to start it with the system: `sudo systemctl disable redis`
     7. now it is available as `redis-server` service: e.g. `sudo systemctl status redis-server`
      
-*commit 35e8ce6a9316007dfb17cbcea8d222d0be39a94c*
-
 * `.flaskenv` is used for cli operations. Added dotenv code to use `.env` for running via wsgi, `.env.testing` - for tests
 * updated testing and tox setup
    
+*commit 18596119f51e05b2fd7a3e3fde905b292f68409a*
+
+* fixed celery - need to add explicit config loading in `easyto_api/celery_app.py`
+* fixed remaining tests - now all presented tests pass
