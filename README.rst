@@ -25,6 +25,12 @@ Running
 
     gunicorn easyto_api.wsgi:app
 
+Using Docker
+------------
+
+* From the root project directory run development server (not yet fully functional)::
+
+    docker-compose up
 
 Testing and linting
 -------------------

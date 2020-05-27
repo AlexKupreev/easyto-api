@@ -1,0 +1,31 @@
+version: '3'
+services:
+  redis:
+    image: redis:6.0.3-alpine
+    restart: always
+    expose:
+      - '6379'
+
+  web:
+    build: .
+    command: flask run
+    depends_on:
+      - "redis"
+    env_file:
+      - .flaskenv
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app/
+
+  worker:
+    build: .
+    command: celery worker -A easyto_api.celery_app:app --loglevel=info
+    depends_on:
+      - "redis"
+    env_file:
+      - .flaskenv
+    ports:
+      - "6379:6379"
+    volumes:
+      - .:/app/

@@ -67,3 +67,8 @@
 
 * fixed celery - need to add explicit config loading in `easyto_api/celery_app.py`
 * fixed remaining tests - now all presented tests pass
+
+*commit f482fe2924ac438d1ba31344cfea778956d12b66*
+
+* created initial version of docker setup - not yet properly working and might break ordinary dev server run
+
