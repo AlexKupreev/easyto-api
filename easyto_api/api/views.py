@@ -1,18 +1,17 @@
 from flask import Blueprint, current_app, jsonify
 from flask_restful import Api
 from marshmallow import ValidationError
-
 from easyto_api.extensions import apispec
 from easyto_api.api.resources import UserResource, UserList
-from easyto_api.api.resources.user import UserSchema
+from easyto_api.api.schemas import UserSchema
 
 
 blueprint = Blueprint("api", __name__, url_prefix="/api/v1")
 api = Api(blueprint)
 
 
-api.add_resource(UserResource, "/users/<int:user_id>")
-api.add_resource(UserList, "/users")
+api.add_resource(UserResource, "/users/<int:user_id>", endpoint="user_by_id")
+api.add_resource(UserList, "/users", endpoint="users")
 
 
 @blueprint.before_app_first_request

@@ -2,19 +2,10 @@ from flask import request
 from flask_restful import Resource
 from flask_jwt_extended import jwt_required
 
+from easyto_api.api.schemas import UserSchema
 from easyto_api.models import User
-from easyto_api.extensions import ma, db
+from easyto_api.extensions import db
 from easyto_api.commons.pagination import paginate
-
-
-class UserSchema(ma.ModelSchema):
-
-    id = ma.Int(dump_only=True)
-    password = ma.String(load_only=True, required=True)
-
-    class Meta:
-        model = User
-        sqla_session = db.session
 
 
 class UserResource(Resource):
@@ -83,7 +74,7 @@ class UserResource(Resource):
                     type: string
                     example: user deleted
         404:
-          description: user does not exists
+          description: user does not exist
     """
 
     method_decorators = [jwt_required]

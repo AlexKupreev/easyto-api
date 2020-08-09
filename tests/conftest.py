@@ -1,5 +1,4 @@
 import json
-import os
 import pytest
 
 from dotenv import load_dotenv
@@ -8,13 +7,15 @@ from easyto_api.models import User
 from easyto_api.app import create_app
 from easyto_api.extensions import db as _db
 
+from pytest_factoryboy import register
+from tests.factories import UserFactory
 
-env_path = os.path.join(os.path.dirname(__file__), "..", ".env.testing")
-load_dotenv(dotenv_path=env_path)
+register(UserFactory)
 
 
 @pytest.fixture
 def app():
+    load_dotenv(".testenv")
     app = create_app(testing=True)
     return app
 
