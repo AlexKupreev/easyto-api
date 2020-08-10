@@ -148,6 +148,51 @@ Testing and linting
     (sudo) make test
 
 
+Authentication
+--------------
+
+* Login to get access and refresh tokens
+
+.. code::
+
+    curl -X POST -H "Content-Type: application/json" -d '{"username": "admin", "password": "password"}' http://localhost:5000/auth/login
+
+    response:
+    {
+      "access_token": "%access_token%",
+      "refresh_token": "%refresh_token%"
+    }
+
+* Make signed API call
+
+.. code::
+
+    curl -X GET -H "Content-Type: application/json" -H "Authorization: Bearer %access_token%" http://localhost:5000/api/v1/endpoint
+
+* Get new access token using refresh token
+
+.. code::
+
+    curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer %refresh_token%" http://localhost:5000/auth/refresh
+
+    response:
+    {
+      "access_token": "%access_token%"
+    }
+
+* Revoke access token using access token
+
+.. code::
+
+    curl -X DELETE -H "Content-Type: application/json" -H "Authorization: Bearer %access_token%" http://localhost:5000/auth/revoke_access
+
+* Revoke refresh token using refresh token
+
+.. code::
+
+    curl -X DELETE -H "Content-Type: application/json" -H "Authorization: Bearer %refresh_token%" http://localhost:5000/auth/revoke_refresh
+
+
 Credits
 -------
 
