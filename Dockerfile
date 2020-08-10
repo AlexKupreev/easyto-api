@@ -19,7 +19,10 @@ RUN poetry config virtualenvs.create false \
   && poetry install --no-interaction --no-ansi
 
 # Copy specified folders into image
+# TODO adjust to copy only necessary folders
 COPY easyto_api /
+
+ENV PYTHONPATH "${PYTHONPATH}:/app/easyto_api:/app/tests"
 
 # Run server in dev mode
 CMD ["flask", "run"]
