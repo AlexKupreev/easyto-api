@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "easyto-api"
 version = "0.1.0"
-description = "ToDo/note taking API server implemented in Flask using Poetry"
+description = "RESTful API boilerplate built with Flask and Poetry"
 authors = ["Alexander Kupreyeu <agkupreev@gmail.com>"]
 maintainers = ["Alexander Kupreyeu <agkupreev@gmail.com>"]
 license = "MIT"
